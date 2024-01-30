@@ -1,0 +1,16 @@
+{
+  "storage": "스토리지 (hostPath, emptyDir, PV,PVC)",
+  "index": "Introduction",
+  "another": "Another Page",
+  "advanced": "Advanced (A Folder)",
+  "about": {
+    "title": "About",
+    "type": "page"
+  },
+  "contact": {
+    "title": "Contact ↗",
+    "type": "page",
+    "href": "-",
+    "newWindow": true
+  }
+}

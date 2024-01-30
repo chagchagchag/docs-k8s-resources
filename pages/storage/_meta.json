@@ -1,0 +1,4 @@
+{
+    "hostPath-emptyDir": "hostPath, emptyDir",
+    "PV-PVC": "PV, PVC"
+}
