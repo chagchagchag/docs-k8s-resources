@@ -1,4 +1,5 @@
 {
     "hostPath-emptyDir": "hostPath, emptyDir",
-    "PV-PVC": "PV, PVC"
+    "PV-PVC": "PV, PVC",
+    "window-directory-k8s-mount": "윈도우에서의 k8s 디렉터리 마운트"
 }

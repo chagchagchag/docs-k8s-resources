@@ -1,0 +1,13 @@
+# kubernetes hostPath 의 윈도우 WSL 디렉터리 경로
+쿠버네티스 역시 결국은 Docker 엔진으로 동작하는데, 윈도우 기반의 Docker 엔진에서 WSL 의 어느 디렉터리를 참조하는지가 꽤 까다롭습니다.<br/>
+디렉터리를 참조하는 경로는 아래와 같이 구성됩니다.<br/>
+
+```bash filename="bash" {3} copy
+/run/desktop/mnt/host/c/PATH/TO/FILE
+```
+<br/>
+
+예를 들어 HOST PC 의 /v/000.env/volume 을 파드 내에서 마운트할 때 `hostPath` 의 `path` 는 아래와 같이 지정해줍니다.
+```bash filename="bash" {3} copy
+/run/desktop/mnt/host/v/000.env/volume
+```
