@@ -1,0 +1,34 @@
+## PV, PVC
+
+## 참고자료
+- [핵심만 콕! 쿠버네티스](https://ebook-product.kyobobook.co.kr/dig/epd/ebook/E000002955305)
+<br/>
+
+## PV, PVC
+쿠버네티스에서는 데이터 저장소를 프로비저닝 쿠버네티스에서는 데이터 저장소를 프로비저닝(Provisioning(제공))하는 부분과 저장소를 사용하는 부분으로 분류합니다. PV는 프로비저닝을 담당하고, PVC는 저장소를 사용하는 역할을 합니다.<br/>
+즉, PV를 하나의 볼륨으로만 인식할 뿐이고, PVC를 거쳐서 PV에 Read/Write 를 수행합니다.<br/>
+PV 로 특정 볼륨을 마운트한 컨테이너는 새로운 노드에서 컨테이너/파드가 새로 기동되더라도 PV 볼륨에 저장된 데이터를 이어서 계속 사용가능합니다.<br/>
+<br/>
+
+PV 는 hostPath 기반으로 선언할 수도 있고, NFS 기반으로 선언할 수도 있고, AWSElasticBlockStore PV 로도 선언할 수 있습니다.<br/>
+이 외에도 다양한 방식으로 사용될 수 있는데 아래와 같은 다양한 방벋들이 있습니다.
+- azureDisk : Azure 클라우드 플랫폼에서 제공하는 볼륨 서비스
+- emptyDir : Pod 레벨에서의 볼륨개념이다. 주로 같은 Pod 내 컨테이너 들 끼리 filesystem을 통한 정보를 주고받을때 많이 사용한다.
+- downward API
+- configMap 
+<br/>
+
+AWS 클라우드 플랫폼 기반이라면 가장 선호되는 방식은 AWSElasticBlockStore 방식이겠지만, 경우에 따라 취사선택을 하는 경우가 많습니다.<br/>
+클라우드에서 제공하는 볼륨 서비스로는 GCP플랫폼에서는 `PersistentDisk`, AWS플랫폼에서는 `EBS(Elastic Bock Storage)` 라는 볼륨을 사용하는 방식이 있습니다.<br/>
+<br/>
+
+
+## PV 리소스 선언
+`kind` 를 `PersistentVolume` 으로 선언하고 세부적인 `spec` 내에 용량은 어느 정도로 할지 액세스 모드는 어떻게 할 것인지를 명시해서 하나의 리소스로 정의합니다.<br/>
+
+### hostPath PV 예제
+### NFS PV 예제
+### EBS PV 예제 
+
+
+
