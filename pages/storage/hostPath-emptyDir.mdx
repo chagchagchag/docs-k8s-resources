@@ -14,18 +14,18 @@ PV 역시 PV를 hostPath 기반으로 선언할 수도 있고, NFS 기반으로 
 가장 선호되는 방식은 AWSElasticBlockStore 방식이겠지만, 경우에 따라 취사선택을 하는 경우가 많다.<br/>
 <br/>
 
-## hostPath
-- hostPath 는 노드(호스트 머신)의 디렉터리를 파드에 마운트하는 방식이다. 위에서 살펴본 emptyDir 은 **컨테이너**의 볼륨으로 호스트의 디스크를 마운트하지만, hostPath 는 **파드**에 호스트의 디렉터리를 마운트한다는 사실에 유의하자.
-- “파드가 Host 의 Path 를 마운트한다.” 라고 생각한다면 이해가 쉽다.
-- hostPath 로 볼륨을 마운트하면 파드가 재시작 되더라도 호스트에 데이터가 남아있다. 다만 파드가 새로운 호스트(노드)에서 재시작될 경우는 새로운 호스트(노드)의 디렉터리를 사용하므로, 이전 노드에서 사용하던 데이터는 접근불가능하다.
-- hostPath 는 흔히 Host Volume 이라고 부르기도 한다. 도커의 -v 옵션과 유사하게 host 서버의 볼륨 공간에 Pod가 데이터를 저장하는 것을 의미한다.
-<br/>
-
-### 예제
+## 예제
 - [Dockerhub - chagchagchag/k8shelloboot](https://hub.docker.com/repository/docker/chagchagchag/k8shelloboot/general)
 - [github/chagchagchag/eks-k8s-docker-study-archive/application-examples/k8shello](https://github.com/chagchagchag/eks-k8s-docker-study-archive/tree/main/application-examples/k8shello)
   - [k8s/k8shelloboot-hostpath.yml](https://github.com/chagchagchag/eks-k8s-docker-study-archive/blob/main/application-examples/k8shello/k8s/k8shelloboot-hostpath.yml)
   - [k8s/k8shelloboot-emptydir.yml](https://github.com/chagchagchag/eks-k8s-docker-study-archive/blob/main/application-examples/k8shello/k8s/k8shelloboot-emptydir.yml)
+<br/>
+
+## hostPath
+- hostPath 는 노드(호스트 머신)의 디렉터리를 파드에 마운트하는 방식이다. 위에서 살펴본 emptyDir 은 호스트의 디스크를 **컨테이너**의 볼륨으로 마운트하지만, hostPath 는 호스트의 디스크를 **파드**에 마운트한다는 사실에 유의하자.
+- “파드가 Host 의 Path 를 마운트한다.” 라고 생각한다면 이해가 쉽다.
+- hostPath 로 볼륨을 마운트하면 파드가 재시작 되더라도 호스트에 데이터가 남아있다. 다만 파드가 새로운 호스트(노드)에서 재시작될 경우는 새로운 호스트(노드)의 디렉터리를 사용하므로, 이전 노드에서 사용하던 데이터는 접근불가능하다.
+- hostPath 는 흔히 Host Volume 이라고 부르기도 한다. 도커의 -v 옵션과 유사하게 host 서버의 볼륨 공간에 Pod가 데이터를 저장하는 것을 의미한다.
 <br/>
 
 ```yaml filename="k8shelloboot-hostpath.yml" {3} copy
