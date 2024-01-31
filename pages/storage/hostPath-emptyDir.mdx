@@ -26,14 +26,14 @@ PV 역시 PV를 hostPath 기반으로 선언할 수도 있고, NFS 기반으로 
 - [github/chagchagchag/eks-k8s-docker-study-archive/application-examples/k8shello](https://github.com/chagchagchag/eks-k8s-docker-study-archive/tree/main/application-examples/k8shello)
 <br/>
 
-```yaml filename="k8shelloboot.yml" {3} copy
+```yaml filename="k8shelloboot-hostpath.yml" {3} copy
 apiVersion: v1
 kind: Pod
 metadata:
-  name: k8shelloboot-app
+  name: k8shelloboot-app-hostpath
 spec:
   containers:
-  - name: k8shelloboot-app
+  - name: k8shelloboot-app-hostpath
     image: chagchagchag/k8shelloboot:0.0.1
 
     # 컨테이너 내부의 연결 위치 지정
@@ -61,16 +61,12 @@ volumes : Pod 에서 사용할 volume 을 지정
 - hostPath : 호스트 서버 내에 연결 위치를 지정. 위의 예제에서는 `/run/desktop/mnt/host/v/000.env/volume` 이다.
 <br/>
 
-### 실행
+### 실행 & 확인
 ```bash filename="bash" {3} copy
-$ kubectl apply -f k8shelloboot.yml
-pod/k8shelloboot-app created
-```
-<br/>
+$ kubectl apply -f k8shelloboot-hostpath.yml
+pod/k8shelloboot-app-hostpath created
 
-### 확인
-```bash filename="bash" {3} copy
-$ kubectl exec -it k8shelloboot-app -- bash
+$ kubectl exec -it k8shelloboot-app-hostpath -- bash
 bash-4.2#
 bash-4.2# curl http://localhost:8080/healthcheck
 OK
@@ -83,15 +79,16 @@ bash-4.2# exit
 exit
 
 ## 삭제
-$ kubectl delete -f k8shelloboot.yml
-pod "k8shelloboot-app" deleted
+$ kubectl delete -f k8shelloboot-hostpath.yml
+pod "k8shelloboot-app-hostpath" deleted
 
 ## 재생성
-$ kubectl apply -f k8shelloboot.yml
-pod/k8shelloboot-app created
+$ kubectl apply -f k8shelloboot-hostpath.yml
+pod/k8shelloboot-app-hostpath created
 
 ## bash 접속
-$ kubectl exec -it k8shelloboot-app -- bash
+$ kubectl exec -it k8shelloboot-app-hostpath -- bash
+bash-4.2#
 
 ## API 호출
 bash-4.2# curl http://localhost:8080/healthcheck
