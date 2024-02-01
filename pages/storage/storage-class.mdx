@@ -1,12 +1,17 @@
 ## StorageClass 
 
 ## local-path
-kind 에는 `local-path` 타입의 StorageClass 가 설치되어 있습니다. 이름은 `standard` 라는 이름으로 설치되어 있습니다.
+kind 에는 `local-path` 타입의 StorageClass 가 설치되어 있습니다. kind 클러스터의 버전에 따라 다르겠지만, 이번 예제에서 사용한 kind 클러스터에서 나타난 `local-path` 타입의 StorageClass 의 이름은 `standard` 라는 이름으로 설치되어 있습니다.<br/>
+StorageClass 를 조회하는 명령은 `kubectl get sc` 입니다.
 ```bash filename="bash" {3} copy
 $ kubectl get sc
 NAME                 PROVISIONER             RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
 standard (default)   rancher.io/local-path   Delete          WaitForFirstConsumer   false                  11m
 ```
+<br/>
+
+위의 결과를 보면 Kind 클러스터 내에 `local-path` 타입으로 디폴트로 설치된 StorageClass 의 이름은 "standard" 입니다.<br/>
+아래에서 정의할 PVC 정의 yaml 에서 `spec.storageClassName` 은 반드시 위에서 조회해서 알게된 `standard` 로 지정해주면 됩니다.<br/>
 <br/>
 
 어떻게 정의되어 있는지 확인해보면 아래와 같습니다.
