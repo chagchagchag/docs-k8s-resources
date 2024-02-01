@@ -101,7 +101,8 @@ k8shelloboot-pv-hostpath   500Mi      RWO            Retain           Bound    d
 PVC 연결 전에는 STATUS 가 `Available` 였는데 연결 후에는 STATUS가 `Bound` 로 변한 것을 확인 가능합니다.<br/>
 <br/>
 
-### NFS PV 예제
+### NFS PV, PVC 예제
+nfs 는 StorageClass 와 [nfs-server-provisioner](https://artifacthub.io/packages/helm/kvaps/nfs-server-provisioner) 를 이용한 실습이 가능한데, 이 것에 대해서는 나중에 정리해둘 예정이고, 일단은 PV 리소스 정의를 어떻게 하는지만 정리해두었습니다.
 ```yaml filename="nfs-pv.yaml" {3} copy
 apiVersion: v1
 kind: PersistentVolume
@@ -123,7 +124,6 @@ spec:
 <br/>
 
 ### EBS PV 예제 
-
 ```yaml filename="ebs-pv.yaml" {3} copy
 apiVersion: v1
 kind: PersistentVolume
@@ -140,8 +140,5 @@ spec:
 ```
 <br/>
 
-<br/>
-
-## PVC 리소스 선언
 
 
